@@ -2,7 +2,7 @@
  * Name: Sara Yacoub
  * This file has the implementation of the class: Stack
  * Stack is a derived class; it is a LIFO SimpleList
- *
+ * 
  */
 
 
