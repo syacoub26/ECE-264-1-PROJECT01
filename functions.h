@@ -54,7 +54,7 @@ void addList( list<SimpleList<T>*> *l, string n, string t){
 	}
 }
 
-//this function pushes values into stacks and queues
+/*//this function pushes values into stacks and queues
 template<typename T>
 void listPush( list<SimpleList<T>*> *li, string n, string v){
 	
@@ -72,7 +72,7 @@ void listPush( list<SimpleList<T>*> *li, string n, string v){
 	}else if(n.at(0) == 's'){
 		l->push( v );
 	}
-}
+}*/
 
 //this function determines if a SimpleList is empty
 template<typename T>
@@ -86,14 +86,17 @@ bool isEmpty( list<SimpleList<T>*> *li, string n){
 	return (l->getSize() == 0 );
 }
 
-//this function pops values from stacks and queues
+/*//this function pops values from stacks and queues
 template<typename T>
 string listPop( list<SimpleList<T>*> *li, string n){
 	SimpleList<T> *l;
 	for(auto const& i: *li){
-		if( i->getName.compare(n) == 0 ){
+		if( i->getName().compare(n) == 0 ){
 			l = i;
 		}
 	}
-	return l->pop();
-}
+	T temp = l->pop();
+	string s = "";
+	s += temp;
+	return s;
+}*/

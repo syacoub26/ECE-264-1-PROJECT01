@@ -2,7 +2,7 @@
  * Name: Sara Yacoub
  * This program takes a text file of commands regarding
  * creating, pushing values to and poping from stacks and queues
- * and writing the result to an output text file.
+ * and writing the result to an output text file
  *
  */
 
@@ -95,11 +95,29 @@ int main(){
 				output << "ERROR: This name does not exist!\n";
 			}else{
 				if( type == 'i' ){
-					listPush<int>(&intLi, words[1], words[2]);
+					SimpleList<int> *l;
+					for(auto const& i: intLi){
+						if( i->getName().compare(words[1]) == 0 ){
+							l = i;
+						}
+					}
+					l->push( stoi(words[2]) );
 				}else if( type == 'd' ){
-					listPush<double>(&douLi, words[1], words[2]);
+					SimpleList<double> *l;
+					for(auto const& i: douLi){
+						if( i->getName().compare(words[1]) == 0 ){
+							l = i;
+						}
+					}
+					l->push( stod(words[2]) );
 				}else if( type == 's' ){
-					listPush<string>(&strLi, words[1], words[2]);
+					SimpleList<string> *l;
+					for(auto const& i: strLi){
+						if( i->getName().compare(words[1]) == 0 ){
+							l = i;
+						}
+					}
+					l->push( words[2] );
 				}
 			}
 		}else if( !words[0].compare("pop") ){
@@ -111,11 +129,31 @@ int main(){
 				}else{
 					string popped = "";
 					if( type == 'i' ){
-						popped = listPop<int>(&intLi, words[1]);
+						SimpleList<int> *l;
+						for(auto const& i: intLi){
+							if( i->getName().compare(words[1]) == 0 ){
+								l = i;
+							}
+						}
+						int temp = l->pop();
+						popped += temp;
 					}else if( type == 'd' ){
-						popped = listPop<double>(&douLi, words[1]);
+						SimpleList<double> *l;
+						for(auto const& i: douLi){
+							if( i->getName().compare(words[1]) == 0 ){
+								l = i;
+							}
+						}
+						double temp = l->pop();
+						popped += temp;
 					}else if( type == 's' ){
-						popped = listPop<string>(&strLi, words[1]);
+						SimpleList<string> *l;
+						for(auto const& i: strLi){
+							if( i->getName().compare(words[1]) == 0 ){
+								l = i;
+							}
+						}
+						popped += l->pop();
 					}
 					output << "Value popped: " << popped << "\n";
 				}
