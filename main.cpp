@@ -10,6 +10,7 @@
 #include <string>
 #include <fstream>
 #include <list>
+#include <sstream>
 
 using namespace std;
 
@@ -96,29 +97,11 @@ int main(){
 				output << "ERROR: This name does not exist!\n";
 			}else{
 				if( type == 'i' ){
-					SimpleList<int> *l;
-					for(auto const& i: intLi){
-						if( i->getName().compare(words[1]) == 0 ){
-							l = i;
-						}
-					}
-					l->push( stoi(words[2]) );
+					search<int>(&intLi, words[1])->push( stoi(words[2]) );
 				}else if( type == 'd' ){
-					SimpleList<double> *l;
-					for(auto const& i: douLi){
-						if( i->getName().compare(words[1]) == 0 ){
-							l = i;
-						}
-					}
-					l->push( stod(words[2]) );
+					search<double>(&douLi, words[1])->push( stod(words[2]) );
 				}else if( type == 's' ){
-					SimpleList<string> *l;
-					for(auto const& i: strLi){
-						if( i->getName().compare(words[1]) == 0 ){
-							l = i;
-						}
-					}
-					l->push( words[2] );
+					search<string>(&strLi, words[1])->push( words[2] );
 				}
 			}
 		}else if( !words[0].compare("pop") ){
@@ -130,31 +113,17 @@ int main(){
 				}else{
 					string popped = "";
 					if( type == 'i' ){
-						SimpleList<int> *l;
-						for(auto const& i: intLi){
-							if( i->getName().compare(words[1]) == 0 ){
-								l = i;
-							}
-						}
-						int temp = l->pop();
-						popped += temp;
+						int temp = listPop<int>(&intLi, words[1]);
+						ostringstream st;
+						st << temp;
+						popped += st.str();
 					}else if( type == 'd' ){
-						SimpleList<double> *l;
-						for(auto const& i: douLi){
-							if( i->getName().compare(words[1]) == 0 ){
-								l = i;
-							}
-						}
-						double temp = l->pop();
-						popped += temp;
+						double temp = listPop<double>(&douLi, words[1]);
+						ostringstream st;
+						st << temp;
+						popped = st.str();
 					}else if( type == 's' ){
-						SimpleList<string> *l;
-						for(auto const& i: strLi){
-							if( i->getName().compare(words[1]) == 0 ){
-								l = i;
-							}
-						}
-						popped += l->pop();
+						popped += listPop<string>(&strLi, words[1]);
 					}
 					output << "Value popped: " << popped << "\n";
 				}

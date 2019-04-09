@@ -53,7 +53,7 @@ public:
 
 	//getter functions
 	string getName() const { return name; }
-	int getSize() const { return size; }
+	int getSize() { return size; }
 
 };
 
