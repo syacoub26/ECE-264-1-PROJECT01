@@ -28,11 +28,12 @@ int main(){
 
 	string inputFile;
 	cout << "Enter name of input file: ";
-	cin >> inputFile;
+	getline(cin, inputFile);
 	ifstream input(inputFile);
 
 	string outputFile;
 	cout << "Enter name of output file: ";
+	getline(cin, outputFile);
 	ofstream output(outputFile);
 
 	string command;
